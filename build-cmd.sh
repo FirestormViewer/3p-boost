@@ -32,8 +32,8 @@ cd "$BOOST_SOURCE_DIR"
 bjam="$(pwd)/b2"
 stage="$(pwd)/stage"
 
-[ -f "$stage"/packages/include/zlib/zlib.h ] || fail "You haven't installed the zlib package yet."
-                                                     
+[ -f "$stage"/packages/include/zlib-ng/zlib.h ] || fail "You haven't installed the zlib-ng package yet."
+
 if [ "$OSTYPE" = "cygwin" ] ; then
     autobuild="$(cygpath -u $AUTOBUILD)"
     # convert from bash path to native OS pathname
@@ -366,9 +366,9 @@ case "$AUTOBUILD_PLATFORM" in
         sep "bootstrap"
         ./bootstrap.sh --prefix=$(pwd) --with-icu="${stage}"/packages/
 
-        RELEASE_BOOST_BJAM_OPTIONS=(toolset=gcc "include=$stage/packages/include/zlib/" \
+        RELEASE_BOOST_BJAM_OPTIONS=(toolset=gcc "include=$stage/packages/include/zlib-ng/" \
             "-sZLIB_LIBPATH=$stage/packages/lib/release" \
-            "-sZLIB_INCLUDE=${stage}\/packages/include/zlib/" \
+            "-sZLIB_INCLUDE=${stage}\/packages/include/zlib-ng/" \
             "${BOOST_BJAM_OPTIONS[@]}" \
             cxxflags=-std=c++11)
         sep "build"
